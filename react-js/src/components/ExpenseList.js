@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ExpenseItem from './ExpenseItem'
 import { MdSend } from 'react-icons/md'
 
-export class ExpenseList extends Component {
-  render() {
+const ExpenseList =({handleDelete,initialExpenses}) => {
     return (
       <>
       <ul className='list'>
-        <ExpenseItem/>
+        {initialExpenses.map(expense =>{
+          return (
+            <ExpenseItem expense={expense} key={expense.id} handleDelete ={handleDelete}/>
+          )
+        })}
       </ul>
       <button className='btn'>
         목록 지우기
@@ -15,7 +18,7 @@ export class ExpenseList extends Component {
       </button>
       </>
     )
-  }
+
 }
 
 export default ExpenseList

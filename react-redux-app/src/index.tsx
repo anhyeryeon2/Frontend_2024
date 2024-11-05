@@ -4,12 +4,20 @@ import './index.css';
 import App from './App';
 import { createStore } from 'redux';
 import counter from "./reducers"
+import rootReducer from './reducers';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const store = createStore(counter);
+const store = createStore(rootReducer);
 
+store.dispatch({
+  type:"ADD_TODO",
+  text:"USE REDUX"
+})
+
+console.log("store에 잘 들어갔는지 확인 store.getState", store.getState())
 const render =() => root.render(
   <React.StrictMode>
     <App 

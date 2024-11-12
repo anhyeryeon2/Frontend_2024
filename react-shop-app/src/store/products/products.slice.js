@@ -3,11 +3,16 @@ import axios from "axios";
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async (thunkAPI) =>{
+    async (category, thunkAPI) =>{
         console.log(thunkAPI);
         try{
-            const response = await axios.get("https://fakestoreapi.com/products");
-            console.log("@@데이터확인 : ",response);
+            let response;
+            if(category){
+                response = await axios.get(`https://fakestoreapi.com/products/category/${category}`);
+            }else{
+                response = await axios.get("https://fakestoreapi.com/products");
+            }
+          
             return response.data ;//payload
         }catch(error){
             return thunkAPI.rejectWithValue("Error loading products 데이터요청 중 에러")

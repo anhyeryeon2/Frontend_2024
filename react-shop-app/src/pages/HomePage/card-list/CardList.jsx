@@ -7,11 +7,12 @@ import { fetchProducts } from '../../../store/products/products.slice'
 const CardList = () => {
     const dispatch = useAppDispatch();
     const {products} = useAppSelector((state) => state.products);
-
+    const category = useAppSelector(state => state.category);
+    
     useEffect(()=>{
         console.log("Fetching products...");
-        dispatch(fetchProducts());
-    },[])
+        dispatch(fetchProducts( category?.toLowerCase()));
+    },[category])
 
   return (
     <ul className={styles.card_list}>

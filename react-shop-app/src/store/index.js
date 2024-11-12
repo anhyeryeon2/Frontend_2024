@@ -10,4 +10,5 @@ export const store = configureStore({
         products: productsReducer,
         cart: cartReducer
     },
+    devTools: process.env.NODE_ENV !== 'production', 
 });

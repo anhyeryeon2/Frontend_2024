@@ -3,16 +3,20 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import CardItem from '../card-list/card-item/CardItem'
 import styles from '../card-list/CardList.module.scss'
 import { fetchProducts } from '../../../store/products/products.slice'
+import CardSkeleton from '../card-skeleton/CardSkeleton'
 
 const CardList = () => {
     const dispatch = useAppDispatch();
-    const {products} = useAppSelector((state) => state.products);
+    const {products, isLoading } = useAppSelector((state) => state.products);
     const category = useAppSelector(state => state.category);
     
     useEffect(()=>{
         console.log("Fetching products...");
         dispatch(fetchProducts( category?.toLowerCase()));
     },[category])
+
+    if(isLoading) 
+      return <CardSkeleton/>;
 
   return (
     <ul className={styles.card_list}>

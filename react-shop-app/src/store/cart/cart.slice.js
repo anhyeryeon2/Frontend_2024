@@ -28,11 +28,11 @@ export const cartSlice = createSlice({
             })
             localStorage.setItem('cartProducts',JSON.stringify(state.products));
         },
-        deleteFormCart:(state,action) => {
+        deleteFromCart:(state,action) => {
             state.products = state.products.filter((item)=>item.id !== action.payload);
             localStorage.setItem("cartProducts",JSON.stringify(state.products));
         },
-        incrementProduct :(state,action) =>{
+        incrementProduct:(state,action) =>{
             state.products = state.products.map((item) =>
               item.id === action.payload
                 ? {
@@ -66,8 +66,8 @@ export const cartSlice = createSlice({
 })
 export const {
   addToCart,
-  deleteFormCart,
-  incremnetProduct,
+  deleteFromCart,
+  incrementProduct,
   decrementProduct,
   getTotalPrice,
   setUserId,

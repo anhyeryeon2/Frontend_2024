@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import styles from "../DetailPage/DetailPage.module.scss";
 import { useAppSelector } from '../../hooks/redux';
 import Loader from '../../components/loader/Loader';
+import { addToCart } from '../../store/cart/cart.slice';
 
 function DetailPage() {
   const {id} = useParams();
@@ -19,6 +20,9 @@ function DetailPage() {
     dispatch(fetchProduct(productId))
   },[productId]);
 
+  const addItemToCart =() =>{
+    dispatch(addToCart(product));
+  }
   return (
     <div className='page'>
       {isLoading ? (
@@ -35,7 +39,7 @@ function DetailPage() {
             <h4> $ {product.price} </h4>
             <p> {product.description}</p>
             <div>
-              <button disabled={productMatching}>
+              <button disabled={productMatching} onClick={()=> !productMatching && addItemToCart()}>
                 {productMatching ? "장바구니 담긴 제품": "장바구니 담기"}
               </button>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "./CartEmpty.module.scss"
+import { Link } from 'react-router-dom'
 const CartEmpty = ({title}) => {
   return (
     <div className={styles.cart_empty}>

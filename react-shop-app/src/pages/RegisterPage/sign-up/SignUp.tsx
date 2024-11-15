@@ -13,7 +13,7 @@ const SignUp = () => {
   const auth = getAuth(app);
   const dispatch = useDispatch();
 
-  const handleSignupAndLogin = (email, password) => {
+  const handleSignupAndLogin = (email:string, password:string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         dispatch(setUser({

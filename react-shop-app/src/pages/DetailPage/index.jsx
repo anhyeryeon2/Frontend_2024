@@ -28,8 +28,8 @@ function DetailPage() {
       {isLoading ? (
         <Loader/>
       ):(
-        <div className={styles.car_wrapper}>
-          <div className={styles.car_img}>
+        <div className={styles.card_wrapper}>
+          <div className={styles.card_img}>
             <img src={product.image} alt='product card'/>
           </div>
           <div className={styles.card_description}>

@@ -10,6 +10,7 @@ import { getAuth, signOut } from 'firebase/auth'
 import app from '../../../firebase'
 import {removeUser} from '../../../store/user/user.slice';
 import { useAppSelector } from '../../../hooks/redux'
+import NavCartBlock from './nav-cart-block/NavCartBlock'
 
 const Nav = () => {
 
@@ -37,6 +38,9 @@ const Nav = () => {
               {" "}
               <FiShoppingCart />
               {products.length >0 && <b>{products.length}</b>}
+              {products.length >0 && <div className={styles.nav_hover_cart}>
+                <NavCartBlock/>
+                </div>}
             </Link>
           </div>
         </li>

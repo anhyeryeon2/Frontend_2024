@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IProduct } from "./products.type";
 
 export const fetchProduct = createAsyncThunk(
     "product/fetchProduct",
-    async(id,thunkAPI) => {
+    async(id:number,thunkAPI) => {
         try{
-            const response = await axios.get(
+            const response = await axios.get<IProduct>(
                 `http://fakestoreapi.com/products/${id}`
             )
             return response.data;
@@ -15,9 +16,15 @@ export const fetchProduct = createAsyncThunk(
         }
     }
 );
+type ProductType = {
+    product:IProduct;
+    isLoading:boolean;
+    error:string;
+}
 
-const initialState={
-    product:{},
+
+const initialState:ProductType={
+    product:{} as IProduct,
     isLoading:false,
     error:""
 };
@@ -37,7 +44,7 @@ export const productSlice = createSlice({
         })
         .addCase(fetchProduct.rejected,(state,action)=>{
             state.isLoading = false;
-            state.error = action.payload;
+            state.error = action.payload as string;
         })
     }
 })

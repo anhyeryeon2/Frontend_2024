@@ -12,7 +12,7 @@ export default function Home({allPostsData}:{
   }[]
 }) {
   return (
-    <div>
+    <div className={homeStyles.container}>
       <Head>
         <title>hyeryeon</title>
       </Head>
